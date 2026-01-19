@@ -100,7 +100,7 @@
       >
         <!-- Copyright & Contact -->
         <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600">
-          <span>© 2018 lezada. All Rights Reserved</span>
+          <span>© 2018 nellcareBeauty. All Rights Reserved</span>
           <span class="text-gray-400">|</span>
           <a
             href="tel:+0012356790"
@@ -109,9 +109,9 @@
           >
           <span class="text-gray-400">|</span>
           <a
-            href="mailto:contact@lezada.com"
+            href="mailto:contact@nellcareBeauty.com"
             class="text-gray-700 hover:text-gray-900 transition-colors"
-            >contact@lezada.com</a
+            >contact@nellcareBeauty.com</a
           >
         </div>
 

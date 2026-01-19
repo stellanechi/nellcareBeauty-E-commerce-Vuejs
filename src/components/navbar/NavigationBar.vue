@@ -7,7 +7,7 @@
           to="/"
           class="text-2xl font-semi-bold tracking-wider text-gray-800 hover:text-gray-600 transition-colors"
         >
-          LEZADA
+          nellcareBeauty
         </router-link>
 
         <!-- Navigation -->
