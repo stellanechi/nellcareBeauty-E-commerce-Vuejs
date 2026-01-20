@@ -244,7 +244,7 @@
                     class="w-32 h-32 md:w-55 md:h-55 mx-auto bg-white rounded-lg flex items-center justify-center mb-4"
                   >
                     <img
-                      src="https://nellcareBeauty-demo.myshopify.com/cdn/shop/products/per1_360x.jpg?v=1551249474"
+                      src="https://lezada-demo.myshopify.com/cdn/shop/products/per1_360x.jpg?v=1551249474"
                       alt="Organic Moon Fruit"
                       class="w-full h-full object-contain"
                     />
@@ -268,7 +268,10 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+const showCatalogMenu = ref(false);
+</script>
 
 <style scoped>
 .fade-enter-active,
