@@ -18,6 +18,39 @@
         />
       </div>
     </div>
+    <!-- section -->
+    <div class="container mx-auto pb-16">
+      <h2 class="text-[1.2rem] text-center">
+        <div class="flex items-center justify-center gap-4">
+          <a
+            href="#"
+            class="text-[#a39eaa] hover:underline transition-all duration-200"
+          >
+            #summer
+          </a>
+          <a
+            href="#"
+            class="text-[#a39eaa] hover:underline transition-all duration-200"
+          >
+            #shelf
+          </a>
+          <a
+            href="#"
+            class="text-[#a39eaa] hover:underline transition-all duration-200"
+          >
+            #Sale
+          </a>
+        </div>
+      </h2>
+    </div>
+    <!-- section -->
+    <div class="container mx-auto py-4">
+      <h2 class="text-5xl text-center">
+        Up To 40% Off Final Sale Items. Caught <br />
+        in the moment!
+      </h2>
+    </div>
+    <div><Button label="SHOP NOW" /></div>
   </div>
 </template>
 
@@ -25,6 +58,7 @@
 import NavigationBar from "@/components/navbar/NavigationBar.vue";
 import HeroSlider from "@/pages/home/HeroSlider.vue";
 import Products from "@/pages/home/product/Products.vue";
+import Button from "@/components/Button.vue";
 </script>
 
 <style scoped lang="scss"></style>
