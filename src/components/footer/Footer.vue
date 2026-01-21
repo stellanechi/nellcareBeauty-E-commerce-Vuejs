@@ -100,18 +100,18 @@
       >
         <!-- Copyright & Contact -->
         <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600">
-          <span>© 2018 nellcareBeauty. All Rights Reserved</span>
+          <span>© 2026 NellcareBeauty. All Rights Reserved</span>
           <span class="text-gray-400">|</span>
           <a
             href="tel:+0012356790"
             class="text-gray-700 hover:text-gray-900 transition-colors"
-            >(+00) 123 567990</a
+            >(+234) 80 65194090</a
           >
           <span class="text-gray-400">|</span>
           <a
             href="mailto:contact@nellcareBeauty.com"
             class="text-gray-700 hover:text-gray-900 transition-colors"
-            >contact@nellcareBeauty.com</a
+            >nellcarebeauty@gmail.com</a
           >
         </div>
 
