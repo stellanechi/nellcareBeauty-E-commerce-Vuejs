@@ -22,24 +22,25 @@
     <div class="container mx-auto pb-16">
       <h2 class="text-[1.2rem] text-center">
         <div class="flex items-center justify-center gap-4">
-          <a
-            href="#"
+          <router-link
+            to="/summer"
             class="text-[#a39eaa] hover:underline transition-all duration-200"
           >
             #summer
-          </a>
-          <a
-            href="#"
+          </router-link>
+          <router-link
+            to="/shelf"
             class="text-[#a39eaa] hover:underline transition-all duration-200"
           >
             #shelf
-          </a>
-          <a
-            href="#"
+          </router-link>
+
+          <router-link
+            to="/sales"
             class="text-[#a39eaa] hover:underline transition-all duration-200"
           >
-            #Sale
-          </a>
+            Sale
+          </router-link>
         </div>
       </h2>
     </div>
@@ -50,7 +51,9 @@
         in the moment!
       </h2>
     </div>
-    <div><Button label="SHOP NOW" /></div>
+    <div class="flex items-center justify-center py-14">
+      <Button label="SHOP NOW" />
+    </div>
   </div>
 </template>
 

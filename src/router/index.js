@@ -14,6 +14,22 @@ const router = createRouter({
       name: "search",
       component: () => import("@/components/footer/footerpages/Search.vue"),
     },
+    // sales
+    {
+      path: "/summer",
+      name: "summer",
+      component: () => import("@/pages/home/Summer.vue"),
+    },
+    {
+      path: "/shelf",
+      name: "shelf",
+      component: () => import("@/pages/home/Shelf.vue"),
+    },
+    {
+      path: "/sales",
+      name: "sales",
+      component: () => import("@/pages/home/Sales.vue"),
+    },
     {
       path: "/auth",
       name: "auth",

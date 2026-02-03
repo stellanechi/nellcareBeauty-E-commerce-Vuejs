@@ -41,8 +41,9 @@
 
         <!-- Right: Social Icons -->
         <div class="flex gap-4">
+          <!-- Twitter -->
           <a
-            href="#"
+            href="https://x.com/Nellcarebeauty?s=20"
             class="text-gray-700 hover:text-gray-900 transition-colors"
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -51,8 +52,9 @@
               />
             </svg>
           </a>
+          <!-- Instagram -->
           <a
-            href="#"
+            href="https://www.instagram.com/nellcarebeauty?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             class="text-gray-700 hover:text-gray-900 transition-colors"
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -61,6 +63,7 @@
               />
             </svg>
           </a>
+          <!-- Linkedln -->
           <a
             href="#"
             class="text-gray-700 hover:text-gray-900 transition-colors"
@@ -71,6 +74,7 @@
               />
             </svg>
           </a>
+          <!-- Youtube -->
           <a
             href="#"
             class="text-gray-700 hover:text-gray-900 transition-colors"
@@ -81,6 +85,7 @@
               />
             </svg>
           </a>
+          <!-- Facebookck -->
           <a
             href="#"
             class="text-gray-700 hover:text-gray-900 transition-colors"
