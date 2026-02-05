@@ -30,10 +30,37 @@ const router = createRouter({
       name: "sales",
       component: () => import("@/pages/home/Sales.vue"),
     },
+    // {
+    //   path: "/auth",
+    //   name: "auth",
+    //   component: () => import("@/auth/AuthLayout.vue"),
+    // },
+
+    // AUTH ROUTES (NESTED)
     {
       path: "/auth",
-      name: "auth",
       component: () => import("@/auth/AuthLayout.vue"),
+      children: [
+        {
+          path: "",
+          redirect: "/auth/login",
+        },
+        {
+          path: "login",
+          name: "login",
+          component: () => import("@/auth/Login.vue"),
+        },
+        {
+          path: "create-account",
+          name: "createAccount",
+          component: () => import("@/auth/CreateAccount.vue"),
+        },
+        {
+          path: "reset-password",
+          name: "resetPassword",
+          component: () => import("@/auth/ResetPassword.vue"),
+        },
+      ],
     },
   ],
 });

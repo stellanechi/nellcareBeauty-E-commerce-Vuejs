@@ -20,7 +20,7 @@
 
       <!-- User -->
       <router-link
-        to="/account"
+        to="/auth"
         class="text-gray-600 hover:text-gray-900 transition-colors"
       >
         <svg
