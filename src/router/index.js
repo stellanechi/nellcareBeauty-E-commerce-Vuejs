@@ -53,7 +53,7 @@ const router = createRouter({
         {
           path: "create-account",
           name: "createAccount",
-          component: () => import("@/auth/CreateAccount.vue"),
+          component: () => import("@/auth/CreateAccount .vue"),
         },
         {
           path: "reset-password",

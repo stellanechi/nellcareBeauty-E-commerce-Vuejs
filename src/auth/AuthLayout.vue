@@ -1,5 +1,19 @@
 <template>
   <div>
+    <navigation-bar />
+    <router-view />
+  </div>
+</template>
+
+<script setup>
+import NavigationBar from "@/components/navbar/NavigationBar.vue";
+
+// You can add any layout-specific logic here
+// For example, checking authentication, analytics, etc.
+</script>
+
+<!-- <template>
+  <div>
     <Login
       v-if="currentPage === 'login'"
       @navigate="handleNavigation"
@@ -23,7 +37,7 @@
 <script setup>
 import { ref } from "vue";
 import Login from "@/auth/Login.vue";
-import CreateAccount from "@/auth/Createaccount.vue";
+import CreateAccount from "@/auth/CreateAccount .vue";
 import ResetPassword from "@/auth/ResetPassword.vue";
 
 const currentPage = ref("login");
@@ -82,4 +96,4 @@ const handleResetPassword = (emailData) => {
   //   // Handle error
   // }
 };
-</script>
+</script> -->

@@ -25,7 +25,7 @@
       >
         <svg
           class="w-5 h-5"
-          fill="none"
+          fill="black"
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
@@ -65,7 +65,7 @@
       >
         <svg
           class="w-5 h-5"
-          fill="none"
+          fill="black"
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
