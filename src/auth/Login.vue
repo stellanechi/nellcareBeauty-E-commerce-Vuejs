@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-lg shadow-sm p-8 w-full max-w-md">
+    <div class="bg-[#f3f3f3] rounded-lg shadow-sm p-8 w-full max-w-lg">
       <h1 class="text-3xl font-light text-center mb-2">Login</h1>
       <p class="text-gray-600 text-center mb-8">
         Please login using account detail below.
