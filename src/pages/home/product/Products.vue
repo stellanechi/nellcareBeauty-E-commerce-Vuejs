@@ -2,7 +2,7 @@
   <div class="px-16">
     <!-- Product Cards -->
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10"
     >
       <ProductCard
         v-for="event in events"
@@ -54,6 +54,6 @@ const fetchEvents = async (limit = null) => {
 
 // lifecycle
 onMounted(() => {
-  fetchEvents(8);
+  fetchEvents(6);
 });
 </script>
