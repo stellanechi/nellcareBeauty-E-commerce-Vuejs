@@ -30,7 +30,8 @@
           <catalog />
 
           <!-- Blog -->
-          <div class="relative">
+          <Blog />
+          <!-- <div class="relative">
             <router-link
               to="/blog"
               class="text-gray-600 hover:text-gray-900 transition-colors text-sm inline-flex items-center"
@@ -50,9 +51,9 @@
                 />
               </svg>
             </router-link>
-          </div>
+          </div> -->
 
-          <div class="relative">
+          <!-- <div class="relative">
             <router-link
               to="/pages"
               class="text-gray-600 hover:text-gray-900 transition-colors text-sm inline-flex items-center"
@@ -72,7 +73,8 @@
                 />
               </svg>
             </router-link>
-          </div>
+          </div> -->
+          <Pages />
         </nav>
 
         <!-- Right Icons -->
@@ -86,6 +88,8 @@
 import { ref } from "vue";
 import Icons from "@/components/navbar/Icons.vue";
 import Catalog from "./Catalog.vue";
+import Blog from "./Blog.vue";
+import Pages from "./Pages.vue";
 
 const showCatalogMenu = ref(false);
 </script>

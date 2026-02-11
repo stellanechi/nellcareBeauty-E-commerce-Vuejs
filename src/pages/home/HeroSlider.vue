@@ -108,10 +108,10 @@
     <!-- Previous Button -->
     <button
       @click="previousSlide"
-      class="absolute left-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-gray-300 hover:text-gray-500 transition-colors z-20"
+      class="absolute left-8 top-1/2 -translate-y-1/2 w-20 h-20 flex items-center justify-center text-gray-300 hover:text-gray-500 transition-colors z-20"
     >
       <svg
-        class="w-10 h-10"
+        class="w-20 h-20"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -128,10 +128,10 @@
     <!-- Next Button -->
     <button
       @click="nextSlide"
-      class="absolute right-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center text-gray-300 hover:text-gray-500 transition-colors z-20"
+      class="absolute right-8 top-1/2 -translate-y-1/2 w-20 h-20 flex items-center justify-center text-gray-300 hover:text-gray-500 transition-colors z-20"
     >
       <svg
-        class="w-10 h-10"
+        class="w-40 h-40"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
