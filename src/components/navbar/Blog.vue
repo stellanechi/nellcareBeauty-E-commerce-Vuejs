@@ -8,7 +8,7 @@
     >
       <router-link
         to="/blog"
-        class="text-gray-600 hover:text-gray-900 transition-colors text-sm inline-flex items-center"
+        class="text-gray-400 hover:text-gray-600 transition-colors text-sm inline-flex items-center"
       >
         Blog
         <svg
@@ -39,7 +39,7 @@
               <li>
                 <router-link
                   to="/blog/standard-layout"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >
                   Standard Layout
                   <svg
@@ -60,7 +60,7 @@
               <li>
                 <router-link
                   to="/blog/grid-layout"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >
                   Grid layout
                   <svg
@@ -81,7 +81,7 @@
               <li>
                 <router-link
                   to="/blog/list-layout"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >
                   List Layout
                   <svg
@@ -102,7 +102,7 @@
               <li>
                 <router-link
                   to="/blog/masonry-layout"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >
                   Masonry Layout
                   <svg
@@ -123,7 +123,7 @@
               <li>
                 <router-link
                   to="/blog/single-post-layout"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >
                   Single Post Layout
                   <svg

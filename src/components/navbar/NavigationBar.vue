@@ -14,66 +14,25 @@
         <nav class="hidden lg:flex items-center space-x-8">
           <router-link
             to="/"
-            class="text-gray-600 hover:text-gray-900 transition-colors text-sm"
+            class="text-gray-400 hover:text-gray-600 transition-colors text-base"
           >
             Home
           </router-link>
 
           <router-link
             to="/shop"
-            class="text-gray-600 hover:text-gray-900 transition-colors text-sm"
+            class="text-gray-400 hover:text-gray-600 transition-colors text-base"
           >
             Shop
           </router-link>
 
-          <!-- Catalog with Dropdown -->
+          <!-- Catalog  -->
           <catalog />
 
           <!-- Blog -->
           <Blog />
-          <!-- <div class="relative">
-            <router-link
-              to="/blog"
-              class="text-gray-600 hover:text-gray-900 transition-colors text-sm inline-flex items-center"
-            >
-              Blog
-              <svg
-                class="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </router-link>
-          </div> -->
 
-          <!-- <div class="relative">
-            <router-link
-              to="/pages"
-              class="text-gray-600 hover:text-gray-900 transition-colors text-sm inline-flex items-center"
-            >
-              Pages
-              <svg
-                class="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </router-link>
-          </div> -->
+          <!-- Pages  -->
           <Pages />
         </nav>
 

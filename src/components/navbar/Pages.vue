@@ -8,7 +8,7 @@
     >
       <router-link
         to="/pages"
-        class="text-gray-600 hover:text-gray-900 transition-colors text-sm inline-flex items-center"
+        class="text-gray-400 hover:text-gray-600 transition-colors text-base inline-flex items-center"
       >
         Pages
         <svg
@@ -39,7 +39,7 @@
               <li>
                 <router-link
                   to="/pages/brand"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm flex items-center gap-2 hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm flex items-center gap-2 hover:bg-gray-50 transition-colors"
                 >
                   Brand
                   <span
@@ -51,7 +51,7 @@
               <li>
                 <router-link
                   to="/pages/about-us"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm block hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm block hover:bg-gray-50 transition-colors"
                 >
                   About Us
                 </router-link>
@@ -59,7 +59,7 @@
               <li>
                 <router-link
                   to="/pages/about-us-2"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm block hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm block hover:bg-gray-50 transition-colors"
                 >
                   About Us 2
                 </router-link>
@@ -67,7 +67,7 @@
               <li>
                 <router-link
                   to="/pages/contact-us"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm block hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm block hover:bg-gray-50 transition-colors"
                 >
                   Contact Us
                 </router-link>
@@ -83,7 +83,7 @@
               <li>
                 <router-link
                   to="/pages/team"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm block hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm block hover:bg-gray-50 transition-colors"
                 >
                   Team
                 </router-link>
@@ -99,7 +99,7 @@
               <li>
                 <router-link
                   to="/pages/mailchimp"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm block hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm block hover:bg-gray-50 transition-colors"
                 >
                   Mailchimp
                 </router-link>
@@ -107,7 +107,7 @@
               <li>
                 <router-link
                   to="/pages/typography"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm block hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm block hover:bg-gray-50 transition-colors"
                 >
                   Typography
                 </router-link>
@@ -115,7 +115,7 @@
               <li>
                 <router-link
                   to="/pages/404"
-                  class="px-6 py-3 text-gray-600 hover:text-gray-900 text-sm block hover:bg-gray-50 transition-colors"
+                  class="px-6 py-3 text-gray-400 hover:text-gray-600 text-sm block hover:bg-gray-50 transition-colors"
                 >
                   404
                 </router-link>

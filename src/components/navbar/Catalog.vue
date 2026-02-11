@@ -7,12 +7,19 @@
     >
       <router-link
         to="/catalog"
-        class="text-gray-600 hover:text-gray-900 transition-colors text-sm inline-flex items-center"
+        class="relative text-gray-400 hover:text-gray-600 transition-colors text-base inline-flex items-center"
       >
-        Catalog
-        <span class="ml-1 px-1.5 py-0.5 bg-teal-400 text-white text-xs rounded"
-          >SALE</span
+        <!-- SALE badge -->
+        <span
+          class="absolute -top-3 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-teal-400 text-white text-[10px] rounded"
         >
+          SALE
+        </span>
+
+        <!-- Catalog text -->
+        <span>Catalog</span>
+
+        <!-- Dropdown icon -->
         <svg
           class="w-4 h-4 ml-1"
           fill="none"
@@ -43,7 +50,7 @@
                   <li>
                     <router-link
                       to="/catalog/causal"
-                      class="text-gray-600 hover:text-gray-900 text-sm flex items-center gap-2"
+                      class="text-gray-400 hover:text-gray-600 text-sm flex items-center gap-2"
                     >
                       Causal
                       <span
@@ -55,7 +62,7 @@
                   <li>
                     <router-link
                       to="/catalog/exclusive"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Exclusive
                     </router-link>
@@ -63,7 +70,7 @@
                   <li>
                     <router-link
                       to="/catalog/aligori"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Aligori
                     </router-link>
@@ -71,7 +78,7 @@
                   <li>
                     <router-link
                       to="/catalog/churidar"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Churidar
                     </router-link>
@@ -79,7 +86,7 @@
                   <li>
                     <router-link
                       to="/catalog/shalwar"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Shalwar
                     </router-link>
@@ -87,7 +94,7 @@
                   <li>
                     <router-link
                       to="/catalog/jeans"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Jeans
                     </router-link>
@@ -95,7 +102,7 @@
                   <li>
                     <router-link
                       to="/catalog/dress"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Dress
                     </router-link>
@@ -110,7 +117,7 @@
                   <li>
                     <router-link
                       to="/catalog/sandals"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Sandals
                     </router-link>
@@ -118,7 +125,7 @@
                   <li>
                     <router-link
                       to="/catalog/bast-shoe"
-                      class="text-gray-600 hover:text-gray-900 text-sm flex items-center gap-2"
+                      class="text-gray-400 hover:text-gray-600 text-sm flex items-center gap-2"
                     >
                       Bast shoe
                       <span
@@ -130,7 +137,7 @@
                   <li>
                     <router-link
                       to="/catalog/blucher-shoe"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Blucher shoe
                     </router-link>
@@ -138,7 +145,7 @@
                   <li>
                     <router-link
                       to="/catalog/boat-shoe"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Boat shoe
                     </router-link>
@@ -146,7 +153,7 @@
                   <li>
                     <router-link
                       to="/catalog/brogan"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Brogan
                     </router-link>
@@ -154,7 +161,7 @@
                   <li>
                     <router-link
                       to="/catalog/chelsea-boot"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Chelsea boot
                     </router-link>
@@ -162,7 +169,7 @@
                   <li>
                     <router-link
                       to="/catalog/brothel-creeper"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Brothel creeper
                     </router-link>
@@ -177,7 +184,7 @@
                   <li>
                     <router-link
                       to="/catalog/belt"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Belt
                     </router-link>
@@ -185,7 +192,7 @@
                   <li>
                     <router-link
                       to="/catalog/wallets"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Wallets
                     </router-link>
@@ -193,7 +200,7 @@
                   <li>
                     <router-link
                       to="/catalog/card-holders"
-                      class="text-gray-600 hover:text-gray-900 text-sm flex items-center gap-2"
+                      class="text-gray-400 hover:text-gray-600 text-sm flex items-center gap-2"
                     >
                       Card Holders
                       <span
@@ -205,7 +212,7 @@
                   <li>
                     <router-link
                       to="/catalog/bags"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Bags
                     </router-link>
@@ -213,7 +220,7 @@
                   <li>
                     <router-link
                       to="/catalog/executive-bag"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Executive bag
                     </router-link>
@@ -221,7 +228,7 @@
                   <li>
                     <router-link
                       to="/catalog/cufflinks"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Cufflinks
                     </router-link>
@@ -229,7 +236,7 @@
                   <li>
                     <router-link
                       to="/catalog/cap"
-                      class="text-gray-600 hover:text-gray-900 text-sm"
+                      class="text-gray-400 hover:text-gray-600 text-sm"
                     >
                       Cap
                     </router-link>

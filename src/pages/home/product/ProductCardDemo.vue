@@ -1,37 +1,36 @@
 <template>
   <div class="product-card">
-    <div>
-      <!-- Badges -->
-      <div class="badges">
-        <span v-if="product.onSale" class="badge">SALE</span>
-        <span v-if="hasDiscount" class="badge">-{{ discountPercent }}%</span>
-        <span v-if="product.badge" class="badge">{{ product.badge }}</span>
-      </div>
-
-      <!-- Image Container -->
-      <div class="image-container">
-        <div v-if="!imageLoaded" class="loading-spinner">
-          <div class="spinner"></div>
-        </div>
-        <img
-          :src="product.image || placeholderImage"
-          :alt="product.title"
-          :class="{ loaded: imageLoaded }"
-          @load="imageLoaded = true"
-          @error="handleImageError"
-        />
-      </div>
+    <!-- Badges -->
+    <div class="badges">
+      <span v-if="product.onSale" class="badge">SALE</span>
+      <span v-if="hasDiscount" class="badge">-{{ discountPercent }}%</span>
+      <span v-if="product.badge" class="badge">{{ product.badge }}</span>
     </div>
+
+    <!-- Image Container -->
+    <div class="image-container">
+      <div v-if="!imageLoaded" class="loading-spinner">
+        <div class="spinner"></div>
+      </div>
+      <img
+        :src="product.image || placeholderImage"
+        :alt="product.title"
+        :class="{ loaded: imageLoaded }"
+        @load="imageLoaded = true"
+        @error="handleImageError"
+      />
+    </div>
+
     <!-- Product Info -->
     <div v-if="product.title || product.price" class="product-info">
-      <h3 class="product-title">{{ product.title }}</h3>
+      <h3 class="product-title">{{ product.number }}. {{ product.title }}</h3>
       <div v-if="product.price" class="price-container">
-        <span class="current-price">${{ product.price }}</span>
+        <span class="current-price">${{ product.price.toFixed(2) }}</span>
         <span
           v-if="product.originalPrice && product.originalPrice > product.price"
           class="original-price"
         >
-          ${{ product.originalPrice }}
+          ${{ product.originalPrice.toFixed(2) }}
         </span>
       </div>
     </div>
@@ -48,6 +47,7 @@ const props = defineProps({
     default: () => ({
       image: "",
       title: "Product Name",
+      number: 1,
       price: null,
       originalPrice: null,
       discount: null,
@@ -93,24 +93,19 @@ const handleImageError = (event) => {
 <style scoped>
 .product-card {
   position: relative;
-  /* background-color: #f9fafb; */
-  border-radius: 0.5rem;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
-  padding: 2rem;
-  background-color: #f2f2f2;
+  transition: all 0.3s ease;
+  background-color: transparent;
 }
 
 .product-card:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 .badges {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 1.25rem;
+  left: 1.25rem;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -118,19 +113,28 @@ const handleImageError = (event) => {
 }
 
 .badge {
-  background-color: #5eead4;
+  background-color: #7dd3c0;
   color: white;
-  padding: 0.25rem 0.75rem;
+  padding: 0.5rem 1rem;
   border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  width: fit-content;
 }
 
 .image-container {
-  /* position: relative;
-  aspect-ratio: 1;
+  position: relative;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
-  background-color: red; */
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
 }
 
 .loading-spinner {
@@ -144,7 +148,7 @@ const handleImageError = (event) => {
 .spinner {
   width: 2rem;
   height: 2rem;
-  border: 4px solid #5eead4;
+  border: 4px solid #7dd3c0;
   border-top-color: transparent;
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -157,13 +161,16 @@ const handleImageError = (event) => {
 }
 
 .image-container img {
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 0;
   transition:
-    transform 0.3s ease,
+    transform 0.4s ease,
     opacity 0.3s ease;
+  padding: 3rem;
 }
 
 .image-container img.loaded {
@@ -175,17 +182,16 @@ const handleImageError = (event) => {
 }
 
 .product-info {
-  padding: 1rem;
+  padding: 0;
+  background-color: transparent;
 }
 
 .product-title {
-  color: #1f2937;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  color: #2d2d2d;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
 }
 
 .price-container {
@@ -195,14 +201,15 @@ const handleImageError = (event) => {
 }
 
 .current-price {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: #111827;
+  color: #1a1a1a;
 }
 
 .original-price {
-  font-size: 0.875rem;
-  color: #6b7280;
+  font-size: 0.9375rem;
+  color: #a0a0a0;
   text-decoration: line-through;
+  font-weight: 400;
 }
 </style>
