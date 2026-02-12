@@ -25,9 +25,20 @@ const emit = defineEmits(["event-selected"]);
 const baseUrl = "https://fakestoreapi.com/products";
 const events = ref([]);
 
+// Define sales per product ID: { [id]: discountPercent }
+const SALE_CONFIG = {
+  1: 15, // 15% off
+  4: 30, // 30% off
+  5: 20, // 20% off
+};
+
 // methods
 const handleViewEvent = (event) => {
   emit("event-selected", event);
+};
+
+const applyDiscount = (price, discountPercent) => {
+  return parseFloat((price - (price * discountPercent) / 100).toFixed(2));
 };
 
 const fetchEvents = async (limit = null) => {
@@ -35,18 +46,22 @@ const fetchEvents = async (limit = null) => {
     const response = await fetch(baseUrl);
     const data = await response.json();
 
-    events.value = (limit ? data.slice(0, limit) : data).map((item) => ({
-      id: item.id,
-      title: item.title,
-      description: item.description,
-      image: item.image,
-      price: item.price, // Changed from template literal to number
-      category: item.category,
-      // Optional: Add these if you want sale badges
-      // originalPrice: item.price * 1.3, // Example: show 30% off
-      // onSale: true,
-      // discount: 30
-    }));
+    events.value = (limit ? data.slice(0, limit) : data).map((item) => {
+      const discountPercent = SALE_CONFIG[item.id] ?? null;
+      const onSale = discountPercent !== null;
+
+      return {
+        id: item.id,
+        title: item.title,
+        description: item.description,
+        image: item.image,
+        category: item.category,
+        price: onSale ? applyDiscount(item.price, discountPercent) : item.price,
+        originalPrice: onSale ? item.price : null,
+        onSale,
+        discount: discountPercent,
+      };
+    });
   } catch (error) {
     console.error("Error fetching events:", error);
   }
