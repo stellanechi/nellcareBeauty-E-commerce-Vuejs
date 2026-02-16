@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useAuthStore } from "@/stores/authStore";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +36,7 @@ const router = createRouter({
     {
       path: "/auth",
       component: () => import("@/auth/AuthLayout.vue"),
+      meta: { guest: true },
       children: [
         {
           path: "",
@@ -57,6 +59,7 @@ const router = createRouter({
         },
       ],
     },
+    // OTHER NAV BAR PAGES
     {
       path: "/shop",
       name: "shop",
@@ -65,4 +68,20 @@ const router = createRouter({
   ],
 });
 
+// route guard
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  const isAuthenticated = authStore.isAuthenticated;
+
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    next({
+      name: "login",
+      query: { redirect: to.fullPath },
+    });
+  } else if (to.meta.guest && isAuthenticated) {
+    next({ name: "home" });
+  } else {
+    next();
+  }
+});
 export default router;
