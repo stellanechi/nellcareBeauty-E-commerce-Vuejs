@@ -30,11 +30,6 @@ const router = createRouter({
       name: "sales",
       component: () => import("@/pages/home/Sales.vue"),
     },
-    // {
-    //   path: "/auth",
-    //   name: "auth",
-    //   component: () => import("@/auth/AuthLayout.vue"),
-    // },
 
     // AUTH ROUTES (NESTED)
     {
@@ -61,6 +56,11 @@ const router = createRouter({
           component: () => import("@/auth/ResetPassword.vue"),
         },
       ],
+    },
+    {
+      path: "/shop",
+      name: "shop",
+      component: () => import("@/components/navbar/shop/Shop.vue"),
     },
   ],
 });

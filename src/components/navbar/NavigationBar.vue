@@ -5,7 +5,7 @@
         <!-- Logo -->
         <router-link
           to="/"
-          class="text-xl sm:text-2xl font-semibold tracking-wider text-[#343434] hover:text-gray-600 transition-colors"
+          class="text-sm sm:text-2xl font-semibold tracking-wider text-[#343434] hover:text-gray-600 transition-colors"
         >
           NELLCARE BEAUTY
         </router-link>
