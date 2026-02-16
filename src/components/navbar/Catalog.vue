@@ -1,6 +1,8 @@
 <template>
   <div>
+    <!-- Desktop Version -->
     <div
+      v-if="!isMobile"
       class="relative"
       @mouseenter="showCatalogMenu = true"
       @mouseleave="showCatalogMenu = false"
@@ -35,7 +37,7 @@
         </svg>
       </router-link>
 
-      <!-- Mega Menu -->
+      <!-- Desktop Mega Menu -->
       <transition name="fade">
         <div
           v-show="showCatalogMenu"
@@ -272,12 +274,389 @@
         </div>
       </transition>
     </div>
+
+    <!-- Mobile Version -->
+    <div v-else class="w-full">
+      <button
+        @click="toggleMobileCatalog"
+        class="w-full text-left text-gray-600 hover:text-gray-900 transition-colors text-base flex items-center justify-between relative py-1"
+      >
+        <span class="flex items-center gap-2">
+          Catalog
+          <span
+            class="px-1.5 py-0.5 bg-teal-400 text-white text-[10px] rounded"
+          >
+            SALE
+          </span>
+        </span>
+        <svg
+          class="w-4 h-4 transition-transform"
+          :class="{ 'rotate-180': showMobileCatalog }"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+
+      <!-- Mobile Accordion Menu -->
+      <transition name="slide-down">
+        <div v-if="showMobileCatalog" class="mt-3 space-y-4">
+          <!-- Popular Section -->
+          <div>
+            <button
+              @click="toggleSection('popular')"
+              class="w-full text-left text-gray-700 font-medium text-sm flex items-center justify-between py-2"
+            >
+              Popular
+              <svg
+                class="w-4 h-4 transition-transform"
+                :class="{ 'rotate-180': activeSection === 'popular' }"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <transition name="slide-down">
+              <ul
+                v-if="activeSection === 'popular'"
+                class="ml-4 mt-2 space-y-2"
+              >
+                <li>
+                  <router-link
+                    to="/catalog/causal"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm flex items-center gap-2 py-1"
+                  >
+                    Causal
+                    <span
+                      class="px-1.5 py-0.5 bg-red-500 text-white text-xs rounded"
+                      >NEW</span
+                    >
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/exclusive"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Exclusive
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/aligori"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Aligori
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/churidar"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Churidar
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/shalwar"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Shalwar
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/jeans"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Jeans
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/dress"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Dress
+                  </router-link>
+                </li>
+              </ul>
+            </transition>
+          </div>
+
+          <!-- Best Selling Section -->
+          <div>
+            <button
+              @click="toggleSection('bestselling')"
+              class="w-full text-left text-gray-700 font-medium text-sm flex items-center justify-between py-2"
+            >
+              Best Selling
+              <svg
+                class="w-4 h-4 transition-transform"
+                :class="{ 'rotate-180': activeSection === 'bestselling' }"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <transition name="slide-down">
+              <ul
+                v-if="activeSection === 'bestselling'"
+                class="ml-4 mt-2 space-y-2"
+              >
+                <li>
+                  <router-link
+                    to="/catalog/sandals"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Sandals
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/bast-shoe"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm flex items-center gap-2 py-1"
+                  >
+                    Bast shoe
+                    <span
+                      class="px-1.5 py-0.5 bg-red-500 text-white text-xs rounded"
+                      >New</span
+                    >
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/blucher-shoe"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Blucher shoe
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/boat-shoe"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Boat shoe
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/brogan"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Brogan
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/chelsea-boot"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Chelsea boot
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/brothel-creeper"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Brothel creeper
+                  </router-link>
+                </li>
+              </ul>
+            </transition>
+          </div>
+
+          <!-- New Product Section -->
+          <div>
+            <button
+              @click="toggleSection('newproduct')"
+              class="w-full text-left text-gray-700 font-medium text-sm flex items-center justify-between py-2"
+            >
+              New Product
+              <svg
+                class="w-4 h-4 transition-transform"
+                :class="{ 'rotate-180': activeSection === 'newproduct' }"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <transition name="slide-down">
+              <ul
+                v-if="activeSection === 'newproduct'"
+                class="ml-4 mt-2 space-y-2"
+              >
+                <li>
+                  <router-link
+                    to="/catalog/belt"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Belt
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/wallets"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Wallets
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/card-holders"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm flex items-center gap-2 py-1"
+                  >
+                    Card Holders
+                    <span
+                      class="px-1.5 py-0.5 bg-teal-400 text-white text-xs rounded"
+                      >SALE</span
+                    >
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/bags"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Bags
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/executive-bag"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Executive bag
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/cufflinks"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Cufflinks
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/catalog/cap"
+                    @click="handleMobileClick"
+                    class="text-gray-500 hover:text-gray-700 text-sm block py-1"
+                  >
+                    Cap
+                  </router-link>
+                </li>
+              </ul>
+            </transition>
+          </div>
+
+          <!-- Featured Product (Mobile) -->
+          <div class="bg-gray-50 rounded-lg p-4 text-center mt-4">
+            <div
+              class="w-24 h-24 mx-auto bg-white rounded-lg flex items-center justify-center mb-3"
+            >
+              <img
+                src="https://lezada-demo.myshopify.com/cdn/shop/products/per1_360x.jpg?v=1551249474"
+                alt="Organic Moon Fruit"
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <h4 class="text-gray-800 text-sm font-medium mb-2">
+              Organic Moon Fruit
+            </h4>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-gray-900 font-semibold text-sm">$39.00</span>
+              <span class="text-gray-400 line-through text-xs">$69.00</span>
+            </div>
+          </div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+
+const props = defineProps({
+  isMobile: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const emit = defineEmits(["close"]);
+
 const showCatalogMenu = ref(false);
+const showMobileCatalog = ref(false);
+const activeSection = ref(null);
+
+const toggleMobileCatalog = () => {
+  showMobileCatalog.value = !showMobileCatalog.value;
+  if (!showMobileCatalog.value) {
+    activeSection.value = null;
+  }
+};
+
+const toggleSection = (section) => {
+  activeSection.value = activeSection.value === section ? null : section;
+};
+
+const handleMobileClick = () => {
+  emit("close");
+};
 </script>
 
 <style scoped>
@@ -289,5 +668,35 @@ const showCatalogMenu = ref(false);
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.slide-down-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-down-leave-active {
+  transition: all 0.2s ease-in;
+}
+
+.slide-down-enter-from {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.slide-down-enter-to {
+  opacity: 1;
+  max-height: 1000px;
+}
+
+.slide-down-leave-from {
+  opacity: 1;
+  max-height: 1000px;
+}
+
+.slide-down-leave-to {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
 }
 </style>

@@ -253,8 +253,8 @@ const handleImageError = (event) => {
   object-position: center;
   opacity: 0;
   transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .image-container img.loaded {
@@ -262,7 +262,7 @@ const handleImageError = (event) => {
 }
 
 .product-card:hover .image-container img {
-  transform: scale(1.05);
+  transform: scale(1.01);
 }
 
 /* ── Product Info ── */
