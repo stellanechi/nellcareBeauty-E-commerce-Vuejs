@@ -15,7 +15,6 @@ export const useWishlistStore = defineStore("wishlist", () => {
 
   /**
    * Get user's wishlist
-   * API may return { data: [...] } or a plain array
    */
   const getWishlist = async () => {
     loading.value = true;
@@ -23,10 +22,8 @@ export const useWishlistStore = defineStore("wishlist", () => {
 
     try {
       const response = await api.get("/wishlist");
-      const raw = response.data;
-      // Unwrap paginated or nested response
-      wishlistItems.value = Array.isArray(raw) ? raw : (raw.data ?? []);
-      return wishlistItems.value;
+      wishlistItems.value = response.data;
+      return response.data;
     } catch (err) {
       error.value = err.response?.data?.message || "Failed to fetch wishlist";
       throw err;
@@ -44,10 +41,12 @@ export const useWishlistStore = defineStore("wishlist", () => {
     error.value = null;
 
     try {
+      // const response = await api.post("/wishlist/add", {
       const response = await api.post("/wishlist/add", {
         product_id: productId,
       });
-      // Refresh to get the latest state from the server
+
+      // Refresh wishlist
       await getWishlist();
       return response.data;
     } catch (err) {
@@ -68,12 +67,11 @@ export const useWishlistStore = defineStore("wishlist", () => {
 
     try {
       const response = await api.delete(`/wishlist/${productId}`);
-      // Optimistically remove from local state
-      wishlistItems.value = wishlistItems.value.filter((item) => {
-        // Handle both flat { product_id } and nested { product: { id } } shapes
-        const id = item.product_id ?? item.product?.id ?? item.id;
-        return id !== productId;
-      });
+
+      // Remove from local state
+      wishlistItems.value = wishlistItems.value.filter(
+        (item) => item.product_id !== productId,
+      );
       return response.data;
     } catch (err) {
       error.value =
@@ -86,14 +84,10 @@ export const useWishlistStore = defineStore("wishlist", () => {
 
   /**
    * Check if product is in wishlist
-   * Handles both flat { product_id } and nested { product: { id } } shapes
    * @param {number} productId
    */
   const isInWishlist = (productId) => {
-    return wishlistItems.value.some((item) => {
-      const id = item.product_id ?? item.product?.id ?? item.id;
-      return id === productId;
-    });
+    return wishlistItems.value.some((item) => item.product_id === productId);
   };
 
   /**

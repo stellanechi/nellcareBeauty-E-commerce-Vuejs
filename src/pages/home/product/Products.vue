@@ -61,11 +61,15 @@
 <script setup>
 import { computed, onMounted } from "vue";
 import { useProductStore } from "@/stores/productStore";
+import { useWishlistStore } from "@/stores/wishlistStore";
+import { useAuthStore } from "@/stores/authStore";
 import ProductCard from "@/pages/home/product/ProductCard.vue";
 
 const emit = defineEmits(["product-selected"]);
 
 const productStore = useProductStore();
+const wishlistStore = useWishlistStore();
+const authStore = useAuthStore();
 
 const handleViewProduct = (product) => {
   emit("product-selected", product);
@@ -75,8 +79,7 @@ const loadProducts = async () => {
   await productStore.getProducts();
 };
 
-// API returns: { id, name, description, price, stock, image, hover_image, category }
-// Map to exactly what ProductCard expects: { id, title, image, price, originalPrice, onSale, discount, badge }
+// Map API fields to ProductCard's expected shape
 const products = computed(() =>
   productStore.products.map((item) => ({
     id: item.id,
@@ -86,16 +89,22 @@ const products = computed(() =>
     hoverImage: item.hover_image,
     category: item.category,
     stock: item.stock,
+    // price: onSale ? applyDiscount(item.price, discountPercent) : item.price,
     price: parseFloat(item.price),
-    // API doesn't return sale fields yet — defaults below keep the card working
     originalPrice: null,
-    onSale: false,
+    onSale: true,
     discount: null,
     badge: null,
   })),
 );
 
-onMounted(() => {
-  loadProducts();
+onMounted(async () => {
+  // Always load products
+  await loadProducts();
+
+  // Loads wishlist in parallel if authenticated
+  if (authStore.isAuthenticated) {
+    wishlistStore.getWishlist().catch(() => {});
+  }
 });
 </script>
