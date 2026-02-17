@@ -48,6 +48,13 @@ const router = createRouter({
       ],
     },
 
+    // PAGES
+    {
+      path: "/wishlist",
+      name: "wishlist",
+      component: () => import("@/pages/wishlist/WishList.vue"),
+    },
+
     // FOOTER SECTION ROUTES
     {
       path: "/search",
