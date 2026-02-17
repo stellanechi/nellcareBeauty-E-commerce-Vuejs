@@ -4,7 +4,7 @@
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
   >
-    <!-- Badges — on wrapper so overflow:hidden on card doesn't clip them -->
+    <!-- Badges -->
     <div class="badges">
       <span v-if="product.onSale" class="badge">SALE</span>
       <span v-if="hasDiscount" class="badge">-{{ discountPercent }}%</span>
@@ -14,13 +14,17 @@
     <div class="product-card">
       <!-- Action Icons (visible on hover) -->
       <div class="action-icons" :class="{ visible: isHovered }">
-        <button class="icon-btn" title="Add to wishlist">
+        <button
+          class="icon-btn"
+          title="Add to wishlist"
+          @click.stop="handleWishlist"
+        >
           <Heart :size="18" :stroke-width="1.5" />
         </button>
-        <button class="icon-btn" title="Compare">
+        <button class="icon-btn" title="Compare" @click.stop>
           <ArrowLeftRight :size="18" :stroke-width="1.5" />
         </button>
-        <button class="icon-btn" title="Quick view">
+        <button class="icon-btn" title="Quick view" @click.stop>
           <ZoomIn :size="18" :stroke-width="1.5" />
         </button>
       </div>
@@ -31,7 +35,7 @@
           <div class="spinner"></div>
         </div>
         <img
-          :src="product.image || placeholderImage"
+          :src="displayImage"
           :alt="product.title"
           :class="{ loaded: imageLoaded }"
           @load="imageLoaded = true"
@@ -42,9 +46,11 @@
 
     <!-- Product Info -->
     <div v-if="product.title || product.price" class="product-info">
-      <!-- Add to cart: shown on hover, hidden by default -->
+      <!-- Add to cart: shown on hover -->
       <div class="add-to-cart-row" :class="{ visible: isHovered }">
-        <button class="add-to-cart-btn">+ Add to cart</button>
+        <button class="add-to-cart-btn" @click.stop="handleAddToCart">
+          + Add to cart
+        </button>
       </div>
 
       <!-- Title: hidden on hover -->
@@ -68,6 +74,10 @@
 <script setup>
 import { ref, computed } from "vue";
 import { Heart, ArrowLeftRight, ZoomIn } from "lucide-vue-next";
+import { useAuthStore } from "@/stores/authStore";
+import { useCartStore } from "@/stores/cartStore";
+import { useWishlistStore } from "@/stores/wishlistStore";
+import { useRouter } from "vue-router";
 
 const props = defineProps({
   product: {
@@ -75,6 +85,7 @@ const props = defineProps({
     required: true,
     default: () => ({
       image: "",
+      hoverImage: null,
       title: "Product Name",
       price: null,
       originalPrice: null,
@@ -85,10 +96,25 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(["click"]);
+
+const router = useRouter();
+const authStore = useAuthStore();
+const cartStore = useCartStore();
+const wishlistStore = useWishlistStore();
+
 const imageLoaded = ref(false);
 const isHovered = ref(false);
 const placeholderImage =
   "https://via.placeholder.com/400x400?text=Product+Image";
+
+// Switch to hover_image on hover if available
+const displayImage = computed(() => {
+  if (isHovered.value && props.product.hoverImage) {
+    return props.product.hoverImage;
+  }
+  return props.product.image || placeholderImage;
+});
 
 const hasDiscount = computed(() => {
   return (
@@ -101,7 +127,6 @@ const hasDiscount = computed(() => {
 
 const discountPercent = computed(() => {
   if (props.product.discount) return props.product.discount;
-
   if (props.product.price && props.product.originalPrice) {
     return Math.round(
       ((props.product.originalPrice - props.product.price) /
@@ -109,13 +134,46 @@ const discountPercent = computed(() => {
         100,
     );
   }
-
   return 0;
 });
 
 const handleImageError = (event) => {
   event.target.src = placeholderImage;
   imageLoaded.value = true;
+};
+
+const handleAddToCart = async () => {
+  if (!authStore.isAuthenticated) {
+    router.push({
+      name: "login",
+      query: { redirect: `/product/${props.product.id}` },
+    });
+    return;
+  }
+  try {
+    await cartStore.addToCart(props.product.id, 1);
+  } catch (error) {
+    console.error("Failed to add to cart:", error);
+  }
+};
+
+const handleWishlist = async () => {
+  if (!authStore.isAuthenticated) {
+    router.push({
+      name: "login",
+      query: { redirect: `/product/${props.product.id}` },
+    });
+    return;
+  }
+  try {
+    if (wishlistStore.isInWishlist(props.product.id)) {
+      await wishlistStore.removeFromWishlist(props.product.id);
+    } else {
+      await wishlistStore.addToWishlist(props.product.id);
+    }
+  } catch (error) {
+    console.error("Failed to update wishlist:", error);
+  }
 };
 </script>
 
@@ -157,7 +215,6 @@ const handleImageError = (event) => {
   color: #ebffff;
   font-size: 0.875rem;
   font-weight: 500;
-  /* new */
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
@@ -270,7 +327,6 @@ const handleImageError = (event) => {
   padding: 1rem 0.25rem 0.5rem;
 }
 
-/* Add to cart — hidden by default, slides in on hover */
 .add-to-cart-row {
   overflow: hidden;
   max-height: 0;
@@ -303,7 +359,6 @@ const handleImageError = (event) => {
   color: #c53030;
 }
 
-/* Title — visible by default, fades out on hover */
 .product-title {
   color: #1f2937;
   font-weight: 500;

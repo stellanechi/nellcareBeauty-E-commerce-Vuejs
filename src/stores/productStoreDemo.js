@@ -1,3 +1,4 @@
+// src/stores/productStore.js
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import api from "@/utils/api";
@@ -13,8 +14,7 @@ export const useProductStore = defineStore("product", () => {
 
   /**
    * Get all products
-   * API returns: { status, current_page, data: [...] }
-   * @param {string|null} tab - Optional filter tab (e.g. 'sale', 'new', 'featured')
+   * @param {string} tab - Filter tab (e.g., 'sale', 'new', 'featured')
    */
   const getProducts = async (tab = null) => {
     loading.value = true;
@@ -23,10 +23,8 @@ export const useProductStore = defineStore("product", () => {
     try {
       const params = tab ? { tab } : {};
       const response = await api.get("/products", { params });
-      // Unwrap paginated response — handles both { data: [] } and plain []
-      const raw = response.data;
-      products.value = Array.isArray(raw) ? raw : (raw.data ?? []);
-      return products.value;
+      products.value = response.data;
+      return response.data;
     } catch (err) {
       error.value = err.response?.data?.message || "Failed to fetch products";
       throw err;
@@ -45,10 +43,8 @@ export const useProductStore = defineStore("product", () => {
 
     try {
       const response = await api.get(`/products/${productId}`);
-      // Unwrap if nested
-      const raw = response.data;
-      currentProduct.value = raw.data ?? raw;
-      return currentProduct.value;
+      currentProduct.value = response.data;
+      return response.data;
     } catch (err) {
       error.value = err.response?.data?.message || "Failed to fetch product";
       throw err;

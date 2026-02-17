@@ -4,14 +4,14 @@
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
   >
-    <div class="product-card">
-      <!-- Badges -->
-      <div class="badges">
-        <span v-if="product.onSale" class="badge">SALE</span>
-        <span v-if="hasDiscount" class="badge">-{{ discountPercent }}%</span>
-        <span v-if="product.badge" class="badge">{{ product.badge }}</span>
-      </div>
+    <!-- Badges — on wrapper so overflow:hidden on card doesn't clip them -->
+    <div class="badges">
+      <span v-if="product.onSale" class="badge">SALE</span>
+      <span v-if="hasDiscount" class="badge">-{{ discountPercent }}%</span>
+      <span v-if="product.badge" class="badge">{{ product.badge }}</span>
+    </div>
 
+    <div class="product-card">
       <!-- Action Icons (visible on hover) -->
       <div class="action-icons" :class="{ visible: isHovered }">
         <button class="icon-btn" title="Add to wishlist">
@@ -24,61 +24,6 @@
           <ZoomIn :size="18" :stroke-width="1.5" />
         </button>
       </div>
-      <!-- <div class="action-icons" :class="{ visible: isHovered }">
-        <button class="icon-btn" title="Add to wishlist">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-            />
-          </svg>
-        </button>
-        <button class="icon-btn" title="Compare">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <polyline points="16 3 21 3 21 8" />
-            <line x1="4" y1="20" x2="21" y2="3" />
-            <polyline points="21 16 21 21 16 21" />
-            <line x1="15" y1="15" x2="21" y2="21" />
-          </svg>
-        </button>
-        <button class="icon-btn" title="Quick view">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            <line x1="11" y1="8" x2="11" y2="14" />
-            <line x1="8" y1="11" x2="14" y2="11" />
-          </svg>
-        </button>
-      </div> -->
 
       <!-- Image Container -->
       <div class="image-container">
@@ -178,6 +123,7 @@ const handleImageError = (event) => {
 .product-wrapper {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .product-card {
@@ -207,12 +153,17 @@ const handleImageError = (event) => {
 }
 
 .badge {
-  background-color: #5eead4;
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
+  background-color: #97d8ca;
+  color: #ebffff;
   font-size: 0.875rem;
   font-weight: 500;
+  /* new */
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ── Action Icons ── */
@@ -302,8 +253,8 @@ const handleImageError = (event) => {
   object-position: center;
   opacity: 0;
   transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .image-container img.loaded {
@@ -311,7 +262,7 @@ const handleImageError = (event) => {
 }
 
 .product-card:hover .image-container img {
-  transform: scale(1.05);
+  transform: scale(1.01);
 }
 
 /* ── Product Info ── */
