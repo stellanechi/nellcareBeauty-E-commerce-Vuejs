@@ -4,11 +4,50 @@ import { useAuthStore } from "@/stores/authStore";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // NAV BAR PAGES
     {
       path: "/",
       name: "home",
       component: () => import("@/pages/home/HomePage.vue"),
     },
+
+    {
+      path: "/shop",
+      name: "shop",
+      component: () => import("@/components/navbar/shop/Shop.vue"),
+    },
+
+    // AUTH ROUTES (NESTED)
+    {
+      path: "/auth",
+      component: () => import("@/auth/AuthLayout.vue"),
+      meta: { guest: true },
+      children: [
+        {
+          path: "",
+          redirect: "/auth/login",
+        },
+        {
+          path: "login",
+          name: "login",
+          component: () => import("@/auth/Login.vue"),
+          meta: { guest: true },
+        },
+        {
+          path: "create-account",
+          name: "createAccount",
+          component: () => import("@/auth/CreateAccount .vue"),
+          meta: { guest: true },
+        },
+        {
+          path: "reset-password",
+          name: "resetPassword",
+          component: () => import("@/auth/ResetPassword.vue"),
+          meta: { guest: true },
+        },
+      ],
+    },
+
     // FOOTER SECTION ROUTES
     {
       path: "/search",
@@ -31,41 +70,15 @@ const router = createRouter({
       name: "sales",
       component: () => import("@/pages/home/Sales.vue"),
     },
-
-    // AUTH ROUTES (NESTED)
-    {
-      path: "/auth",
-      component: () => import("@/auth/AuthLayout.vue"),
-      meta: { guest: true },
-      children: [
-        {
-          path: "",
-          redirect: "/auth/login",
-        },
-        {
-          path: "login",
-          name: "login",
-          component: () => import("@/auth/Login.vue"),
-        },
-        {
-          path: "create-account",
-          name: "createAccount",
-          component: () => import("@/auth/CreateAccount .vue"),
-        },
-        {
-          path: "reset-password",
-          name: "resetPassword",
-          component: () => import("@/auth/ResetPassword.vue"),
-        },
-      ],
-    },
-    // OTHER NAV BAR PAGES
-    {
-      path: "/shop",
-      name: "shop",
-      component: () => import("@/components/navbar/shop/Shop.vue"),
-    },
   ],
+  // scroll behavior to scroll to top on route change
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0, behavior: "smooth" };
+    }
+  },
 });
 
 // route guard
