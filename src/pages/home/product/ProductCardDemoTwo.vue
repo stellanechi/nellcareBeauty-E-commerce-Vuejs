@@ -16,16 +16,10 @@
       <div class="action-icons" :class="{ visible: isHovered }">
         <button
           class="icon-btn"
-          :class="{ 'icon-btn--active': inWishlist }"
-          :title="inWishlist ? 'Remove from wishlist' : 'Add to wishlist'"
+          title="Add to wishlist"
           @click.stop="handleWishlist"
         >
-          <Heart
-            :size="18"
-            :stroke-width="1.5"
-            :fill="inWishlist ? '#e53e3e' : 'none'"
-            :color="inWishlist ? '#e53e3e' : 'currentColor'"
-          />
+          <Heart :size="18" :stroke-width="1.5" />
         </button>
         <button class="icon-btn" title="Compare" @click.stop>
           <ArrowLeftRight :size="18" :stroke-width="1.5" />
@@ -114,10 +108,7 @@ const isHovered = ref(false);
 const placeholderImage =
   "https://via.placeholder.com/400x400?text=Product+Image";
 
-// Reactively checks the wishlist store — updates instantly when store changes
-const inWishlist = computed(() => wishlistStore.isInWishlist(props.product.id));
-
-// Swap to hover_image on hover if the API provided one
+// Switch to hover_image on hover if available
 const displayImage = computed(() => {
   if (isHovered.value && props.product.hoverImage) {
     return props.product.hoverImage;
@@ -175,7 +166,7 @@ const handleWishlist = async () => {
     return;
   }
   try {
-    if (inWishlist.value) {
+    if (wishlistStore.isInWishlist(props.product.id)) {
       await wishlistStore.removeFromWishlist(props.product.id);
     } else {
       await wishlistStore.addToWishlist(props.product.id);
@@ -277,15 +268,6 @@ const handleWishlist = async () => {
   background: #111827;
   color: white;
   transform: scale(1.1);
-}
-
-/* Active wishlist state — light red bg, red icon */
-.icon-btn--active {
-  background: #fff0f0;
-}
-
-.icon-btn--active:hover {
-  background: #e53e3e;
 }
 
 /* ── Image ── */

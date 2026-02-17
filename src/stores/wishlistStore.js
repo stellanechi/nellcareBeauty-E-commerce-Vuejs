@@ -41,6 +41,7 @@ export const useWishlistStore = defineStore("wishlist", () => {
     error.value = null;
 
     try {
+      // const response = await api.post("/wishlist/add", {
       const response = await api.post("/wishlist/add", {
         product_id: productId,
       });
