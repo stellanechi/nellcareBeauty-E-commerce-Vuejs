@@ -52,6 +52,7 @@
         v-for="product in products"
         :key="product.id"
         :product="product"
+        :product-number="product.id"
         @click="handleViewProduct(product)"
       />
     </div>
@@ -75,34 +76,52 @@ const handleViewProduct = (product) => {
   emit("product-selected", product);
 };
 
+// Sale configuration — use actual IDs from your API
+const SALE_CONFIG = {
+  83: 10, // 10% off
+  84: 15, // 15% off
+  85: 20, // 20% off
+  86: 25, // 25% off
+  87: 15, // 15% off
+  88: 30, // 30% off
+  89: 12, // 12% off
+  91: 18, // 18% off
+};
+
 const loadProducts = async () => {
   await productStore.getProducts();
 };
 
-// Map API fields to ProductCard's expected shape
+const applyDiscount = (price, discountPercent) => {
+  return parseFloat((price - (price * discountPercent) / 100).toFixed(2));
+};
+
 const products = computed(() =>
-  productStore.products.map((item) => ({
-    id: item.id,
-    title: item.name,
-    description: item.description,
-    image: item.image,
-    hoverImage: item.hover_image,
-    category: item.category,
-    stock: item.stock,
-    // price: onSale ? applyDiscount(item.price, discountPercent) : item.price,
-    price: parseFloat(item.price),
-    originalPrice: null,
-    onSale: true,
-    discount: null,
-    badge: null,
-  })),
+  productStore.products.map((item) => {
+    const basePrice = parseFloat(item.price);
+    const discountPercent = SALE_CONFIG[item.id] ?? null;
+    const onSale = discountPercent !== null;
+
+    return {
+      id: item.id,
+      title: item.name,
+      description: item.description,
+      image: item.image,
+      hoverImage: item.hover_image,
+      category: item.category,
+      stock: item.stock,
+      price: onSale ? applyDiscount(basePrice, discountPercent) : basePrice,
+      originalPrice: onSale ? basePrice : null,
+      onSale,
+      discount: discountPercent,
+      badge: null,
+    };
+  }),
 );
 
 onMounted(async () => {
-  // Always load products
   await loadProducts();
 
-  // Loads wishlist in parallel if authenticated
   if (authStore.isAuthenticated) {
     wishlistStore.getWishlist().catch(() => {});
   }

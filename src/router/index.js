@@ -14,7 +14,7 @@ const router = createRouter({
     {
       path: "/shop",
       name: "shop",
-      component: () => import("@/components/navbar/shop/Shop.vue"),
+      component: () => import("@/pages/shop/Shop.vue"),
     },
 
     // AUTH ROUTES (NESTED)
