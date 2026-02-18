@@ -3,6 +3,7 @@
     class="product-wrapper"
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
+    @click="handleCardClick"
   >
     <!-- Badges -->
     <div class="badges">
@@ -59,18 +60,21 @@
         </button>
       </div>
 
-      <!-- Title: hidden on hover -->
+      <!-- Title with number: hidden on hover -->
       <h3 class="product-title" :class="{ hidden: isHovered }">
+        <span v-if="productNumber" class="product-number"
+          >{{ productNumber }}.</span
+        >
         {{ product.title }}
       </h3>
 
       <div v-if="product.price" class="price-container">
-        <span class="current-price">${{ product.price }}</span>
+        <span class="current-price">${{ product.price.toFixed(2) }}</span>
         <span
           v-if="product.originalPrice && product.originalPrice > product.price"
           class="original-price"
         >
-          ${{ product.originalPrice }}
+          ${{ product.originalPrice.toFixed(2) }}
         </span>
       </div>
     </div>
@@ -100,6 +104,10 @@ const props = defineProps({
       onSale: false,
     }),
   },
+  productNumber: {
+    type: Number,
+    default: null,
+  },
 });
 
 const emit = defineEmits(["click"]);
@@ -114,10 +122,8 @@ const isHovered = ref(false);
 const placeholderImage =
   "https://via.placeholder.com/400x400?text=Product+Image";
 
-// Reactively checks the wishlist store — updates instantly when store changes
 const inWishlist = computed(() => wishlistStore.isInWishlist(props.product.id));
 
-// Swap to hover_image on hover if the API provided one
 const displayImage = computed(() => {
   if (isHovered.value && props.product.hoverImage) {
     return props.product.hoverImage;
@@ -149,6 +155,13 @@ const discountPercent = computed(() => {
 const handleImageError = (event) => {
   event.target.src = placeholderImage;
   imageLoaded.value = true;
+};
+
+const handleCardClick = () => {
+  // Navigate to product detail page
+  router.push(`/product/${props.product.id}`);
+  // Also emit for parent component if needed
+  emit("click", props.product);
 };
 
 const handleAddToCart = async () => {
@@ -279,7 +292,6 @@ const handleWishlist = async () => {
   transform: scale(1.1);
 }
 
-/* Active wishlist state — light red bg, red icon */
 .icon-btn--active {
   background: #fff0f0;
 }
@@ -391,6 +403,12 @@ const handleWishlist = async () => {
     max-height 0.3s ease,
     opacity 0.25s ease,
     margin 0.3s ease;
+}
+
+.product-number {
+  font-weight: 400;
+  color: #6b7280;
+  margin-right: 0.25rem;
 }
 
 .product-title.hidden {

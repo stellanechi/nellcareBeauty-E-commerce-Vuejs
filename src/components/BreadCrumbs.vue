@@ -1,9 +1,9 @@
 <template>
-  <div class="w-full bg-[#f6f6f6] py-10">
-    <div class="max-w-container mx-auto px-6 lg:px-16">
+  <div class="w-full bg-[#f6f6f6] py-9">
+    <div class="max-w-container mx-auto px-6 lg:px-18">
       <h1
         v-if="title"
-        class="mb-4 text-4xl font-semibold text-[#333333] capitalize md:text-4xl"
+        class="mb-4 text-4xl font-medium text-[#45382e] capitalize md:text-[2.7rem] lg:text-[2.7rem] tracking-wide"
       >
         {{ title }}
       </h1>
@@ -13,14 +13,16 @@
             :is="link.path ? 'RouterLink' : 'span'"
             :to="link.path"
             :class="[
-              'text-xs tracking-wide',
+              'text-base tracking-wider',
               link.path
                 ? 'text-[#444444] underline underline-offset-2 hover:text-[#222222]'
                 : 'text-[#999999]',
             ]"
             >{{ link.label }}</component
           >
-          <span v-if="i < breadcrumbs.length - 1" class="text-[#999999] text-xs"
+          <span
+            v-if="i < breadcrumbs.length - 1"
+            class="text-[#999999] text-base"
             >/</span
           >
         </template>

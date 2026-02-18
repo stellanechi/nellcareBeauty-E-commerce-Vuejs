@@ -16,6 +16,11 @@ const router = createRouter({
       name: "shop",
       component: () => import("@/pages/shop/Shop.vue"),
     },
+    {
+      path: "/product/:id",
+      name: "productDetails",
+      component: () => import("@/pages/home/product/ProductDetails.vue"),
+    },
 
     // AUTH ROUTES (NESTED)
     {

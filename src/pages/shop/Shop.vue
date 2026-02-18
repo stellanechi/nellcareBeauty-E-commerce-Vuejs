@@ -2,6 +2,7 @@
   <div>
     <NavigationBar />
     <BreadCrumbs :breadcrumbs="breadcrumbs" title="Products" />
+    <Products />
   </div>
 
   <p>checking out bag</p>
@@ -10,6 +11,7 @@
 <script setup>
 import BreadCrumbs from "@/components/BreadCrumbs.vue";
 import NavigationBar from "@/components/navbar/NavigationBar.vue";
+import Products from "@/pages/home/product/Products.vue";
 
 const breadcrumbs = [
   {
