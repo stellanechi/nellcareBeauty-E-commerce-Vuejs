@@ -9,7 +9,7 @@
         <button
           @click="activeTab = 'new'"
           :class="[
-            'transition-colors duration-200 hover:text-gray-800',
+            'transition-colors duration-200 hover:text-gray-800 cursor-pointer',
             activeTab === 'new' ? 'text-gray-900' : 'text-[#c6c6c5]',
           ]"
         >
@@ -19,7 +19,7 @@
         <button
           @click="activeTab = 'popular'"
           :class="[
-            'transition-colors duration-200 hover:text-gray-800',
+            'transition-colors duration-200 hover:text-gray-800 cursor-pointer',
             activeTab === 'popular' ? 'text-gray-900' : 'text-[#c6c6c5]',
           ]"
         >
@@ -29,7 +29,7 @@
         <button
           @click="activeTab = 'sale'"
           :class="[
-            'transition-colors duration-200 hover:text-gray-800',
+            'transition-colors duration-200 hover:text-gray-800 cursor-pointer',
             activeTab === 'sale' ? 'text-gray-900' : 'text-[#c6c6c5]',
           ]"
         >
