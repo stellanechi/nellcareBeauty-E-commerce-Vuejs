@@ -25,6 +25,8 @@ export const useProductStore = defineStore("product", () => {
       const response = await api.get("/products", { params });
       // Unwrap paginated response — handles both { data: [] } and plain []
       const raw = response.data;
+      console.log("raw", raw);
+
       products.value = Array.isArray(raw) ? raw : (raw.data ?? []);
       return products.value;
     } catch (err) {

@@ -60,11 +60,19 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useProductStore } from "@/stores/productStore";
 import { useWishlistStore } from "@/stores/wishlistStore";
 import { useAuthStore } from "@/stores/authStore";
 import ProductCard from "@/pages/home/product/ProductCard.vue";
+
+const props = defineProps({
+  activeTab: {
+    type: String,
+    default: "new",
+    validator: (value) => ["new", "popular", "sale"].includes(value),
+  },
+});
 
 const emit = defineEmits(["product-selected"]);
 
@@ -76,20 +84,20 @@ const handleViewProduct = (product) => {
   emit("product-selected", product);
 };
 
-// Sale configuration — use actual IDs from your API
 const SALE_CONFIG = {
-  83: 10, // 10% off
-  84: 15, // 15% off
-  85: 20, // 20% off
-  86: 25, // 25% off
-  87: 15, // 15% off
-  88: 30, // 30% off
-  89: 12, // 12% off
-  91: 18, // 18% off
+  83: 10,
+  84: 15,
+  85: 20,
+  86: 25,
+  87: 15,
+  88: 30,
+  89: 12,
+  91: 18,
 };
 
 const loadProducts = async () => {
-  await productStore.getProducts();
+  // active tab to the API as a filter parameter
+  await productStore.getProducts(props.activeTab);
 };
 
 const applyDiscount = (price, discountPercent) => {
@@ -97,7 +105,7 @@ const applyDiscount = (price, discountPercent) => {
 };
 
 const products = computed(() =>
-  productStore.products.map((item) => {
+  productStore.products.slice(0, 6).map((item) => {
     const basePrice = parseFloat(item.price);
     const discountPercent = SALE_CONFIG[item.id] ?? null;
     const onSale = discountPercent !== null;
@@ -117,6 +125,14 @@ const products = computed(() =>
       badge: null,
     };
   }),
+);
+
+// Watch for tab changes and reload products
+watch(
+  () => props.activeTab,
+  () => {
+    loadProducts();
+  },
 );
 
 onMounted(async () => {

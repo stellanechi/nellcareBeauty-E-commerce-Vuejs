@@ -2,45 +2,14 @@
   <div class="min-h-screen">
     <NavigationBar />
     <HeroSlider />
-
-    <!-- HEADER TITLE WITH CLICKABLE TABS -->
+    <!-- HEADER TITLE -->
     <div class="container mx-auto py-22">
       <h2 class="text-5xl text-center">
-        <button
-          @click="activeTab = 'new'"
-          :class="[
-            'transition-colors duration-200 hover:text-gray-800',
-            activeTab === 'new' ? 'text-gray-900' : 'text-[#c6c6c5]',
-          ]"
-        >
-          New
-        </button>
-        <span class="mx-2">&nbsp;</span>
-        <button
-          @click="activeTab = 'popular'"
-          :class="[
-            'transition-colors duration-200 hover:text-gray-800',
-            activeTab === 'popular' ? 'text-gray-900' : 'text-[#c6c6c5]',
-          ]"
-        >
-          Popular
-        </button>
-        <span class="mx-2">&nbsp;</span>
-        <button
-          @click="activeTab = 'sale'"
-          :class="[
-            'transition-colors duration-200 hover:text-gray-800',
-            activeTab === 'sale' ? 'text-gray-900' : 'text-[#c6c6c5]',
-          ]"
-        >
-          Sale
-        </button>
+        <span>New &nbsp; </span>
+        <span class="text-[#c6c6c5]">Popular &nbsp; Sale </span>
       </h2>
     </div>
-
-    <!-- PRODUCTS WITH ACTIVE TAB -->
-    <Products :active-tab="activeTab" />
-
+    <Products />
     <div class="py-22 flex items-center justify-center">
       <div>
         <img
@@ -49,7 +18,6 @@
         />
       </div>
     </div>
-
     <!-- section -->
     <div class="container mx-auto pb-16">
       <h2 class="text-[1.2rem] text-center">
@@ -66,6 +34,7 @@
           >
             #shelf
           </router-link>
+
           <router-link
             to="/sales"
             class="text-[#a39eaa] hover:underline transition-all duration-200"
@@ -75,7 +44,6 @@
         </div>
       </h2>
     </div>
-
     <!-- section -->
     <div class="container mx-auto py-4">
       <h2 class="text-5xl text-center">
@@ -90,14 +58,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import NavigationBar from "@/components/navbar/NavigationBar.vue";
 import HeroSlider from "@/pages/home/HeroSlider.vue";
 import Products from "@/pages/home/product/Products.vue";
 import Button from "@/components/Button.vue";
-
-// Active tab state - defaults to 'new'
-const activeTab = ref<"new" | "popular" | "sale">("new");
 </script>
 
 <style scoped lang="scss"></style>
