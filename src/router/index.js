@@ -82,6 +82,12 @@ const router = createRouter({
       name: "sales",
       component: () => import("@/pages/home/Sales.vue"),
     },
+    // 404 NOT FOUND - MUST BE LAST!
+    {
+      path: "/:pathMatch(.*)*",
+      name: "notFound",
+      component: () => import("@/pages/NotFound.vue"),
+    },
   ],
   // scroll behavior to scroll to top on route change
   scrollBehavior(to, from, savedPosition) {

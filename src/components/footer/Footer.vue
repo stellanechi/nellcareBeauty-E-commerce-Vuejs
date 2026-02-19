@@ -45,6 +45,8 @@
           <a
             href="https://x.com/Nellcarebeauty?s=20"
             class="text-gray-700 hover:text-gray-900 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -56,6 +58,8 @@
           <a
             href="https://www.instagram.com/nellcarebeauty?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             class="text-gray-700 hover:text-gray-900 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -65,8 +69,10 @@
           </a>
           <!-- Linkedln -->
           <a
-            href="#"
+            href="https://www.linkedin.com/in/nellcare-beauty/"
             class="text-gray-700 hover:text-gray-900 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -78,6 +84,8 @@
           <a
             href="#"
             class="text-gray-700 hover:text-gray-900 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -87,8 +95,10 @@
           </a>
           <!-- Facebookck -->
           <a
-            href="#"
+            href="https://web.facebook.com/profile.php?id=100087060395530"
             class="text-gray-700 hover:text-gray-900 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path

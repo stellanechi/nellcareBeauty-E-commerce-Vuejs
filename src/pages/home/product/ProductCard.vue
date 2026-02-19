@@ -235,7 +235,7 @@ const handleWishlist = async () => {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: box-shadow 0.3s ease;
-  padding: 8rem 5rem;
+  padding: 2rem 2rem;
   background-color: #f2f2f2;
 }
 
@@ -325,7 +325,7 @@ const handleWishlist = async () => {
 /* ── Image ── */
 .image-container {
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: 3/4;
   overflow: hidden;
   display: flex;
   align-items: center;
