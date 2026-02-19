@@ -16,10 +16,23 @@ const router = createRouter({
       name: "shop",
       component: () => import("@/pages/shop/Shop.vue"),
     },
+
     {
       path: "/product/:id",
       name: "productDetails",
       component: () => import("@/pages/home/product/ProductDetails.vue"),
+    },
+    {
+      path: "/checkout",
+      name: "checkout",
+      component: () => import("@/pages/shop/Checkout.vue"),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/cart",
+      name: "cart",
+      component: () => import("@/pages/shop/Cart.vue"),
+      meta: { requiresAuth: true },
     },
 
     // AUTH ROUTES (NESTED)
