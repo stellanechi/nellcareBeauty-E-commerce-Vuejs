@@ -57,7 +57,9 @@
       <!-- Breadcrumb -->
       <div class="px-6 py-3 bg-gray-50 border-b border-gray-200">
         <p class="text-xs text-gray-500">
-          <router-link to="/" class="hover:text-gray-800 transition-colors"
+          <router-link
+            to="/"
+            class="hover:text-gray-800 transition-colors underline"
             >Home</router-link
           >
           <span class="mx-1">/</span>

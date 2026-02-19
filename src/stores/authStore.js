@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
 import api from "@/utils/api";
+import { useCartStore } from "@/stores/cartStore";
 
 export const useAuthStore = defineStore("auth", () => {
   // State
@@ -105,6 +106,10 @@ export const useAuthStore = defineStore("auth", () => {
     } catch (err) {
       console.error("Logout error:", err);
     } finally {
+      // Clear cart items
+      const cartStore = useCartStore();
+      cartStore.clearCart();
+
       // Clear auth data regardless of API response
       token.value = null;
       user.value = null;
