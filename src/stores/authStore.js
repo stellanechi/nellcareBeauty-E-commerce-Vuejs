@@ -108,8 +108,10 @@ export const useAuthStore = defineStore("auth", () => {
       // Clear auth data regardless of API response
       token.value = null;
       user.value = null;
+
       localStorage.removeItem("auth_token");
       localStorage.removeItem("user");
+      localStorage.removeItem("cart");
       loading.value = false;
     }
   };
