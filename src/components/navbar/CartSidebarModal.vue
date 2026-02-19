@@ -1,4 +1,5 @@
 <template>
+  <!-- Backdrop -->
   <Transition
     enter-active-class="transition-opacity ease-out duration-300"
     enter-from-class="opacity-0"
@@ -203,7 +204,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useCartStore } from "@/stores/cartStore";
 import { useAuthStore } from "@/stores/authStore";
@@ -224,7 +225,21 @@ const authStore = useAuthStore();
 const agreedToTerms = ref(false);
 const placeholder = "https://via.placeholder.com/100x100?text=Product";
 
-// Normalize cart items to match display needs
+// Load cart whenever sidebar opens
+watch(
+  () => props.isOpen,
+  async (isOpen) => {
+    if (isOpen && authStore.isAuthenticated) {
+      try {
+        await cartStore.getCart();
+      } catch (error) {
+        console.error("Failed to load cart:", error);
+      }
+    }
+  },
+  { immediate: true },
+);
+
 const cartItems = computed(() =>
   cartStore.cartItems.map((item) => {
     const product = item.product ?? item;

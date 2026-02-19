@@ -55,8 +55,12 @@
     <div v-if="product.title || product.price" class="product-info">
       <!-- Add to cart: shown on hover -->
       <div class="add-to-cart-row" :class="{ visible: isHovered }">
-        <button class="add-to-cart-btn" @click.stop="handleAddToCart">
-          + Add to cart
+        <button
+          class="add-to-cart-btn"
+          :disabled="addingToCart"
+          @click.stop="handleAddToCart"
+        >
+          {{ addingToCart ? "Adding..." : "+ Add to cart" }}
         </button>
       </div>
 
@@ -82,7 +86,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, inject } from "vue";
 import { Heart, ArrowLeftRight, ZoomIn } from "lucide-vue-next";
 import { useAuthStore } from "@/stores/authStore";
 import { useCartStore } from "@/stores/cartStore";
@@ -117,8 +121,12 @@ const authStore = useAuthStore();
 const cartStore = useCartStore();
 const wishlistStore = useWishlistStore();
 
+// Try to get showToast from parent (optional)
+const showToast = inject("showToast", null);
+
 const imageLoaded = ref(false);
 const isHovered = ref(false);
+const addingToCart = ref(false);
 const placeholderImage =
   "https://via.placeholder.com/400x400?text=Product+Image";
 
@@ -158,9 +166,7 @@ const handleImageError = (event) => {
 };
 
 const handleCardClick = () => {
-  // Navigate to product detail page
   router.push(`/product/${props.product.id}`);
-  // Also emit for parent component if needed
   emit("click", props.product);
 };
 
@@ -172,10 +178,26 @@ const handleAddToCart = async () => {
     });
     return;
   }
+
+  addingToCart.value = true;
+
   try {
     await cartStore.addToCart(props.product.id, 1);
+
+    // Show toast if available
+    if (showToast) {
+      showToast(`${props.product.title} added to cart!`, "success");
+    } else {
+      // Fallback: basic alert
+      console.log("Product added to cart!");
+    }
   } catch (error) {
     console.error("Failed to add to cart:", error);
+    if (showToast) {
+      showToast("Failed to add to cart", "error");
+    }
+  } finally {
+    addingToCart.value = false;
   }
 };
 
@@ -387,6 +409,11 @@ const handleWishlist = async () => {
 
 .add-to-cart-btn:hover {
   color: #c53030;
+}
+
+.add-to-cart-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .product-title {

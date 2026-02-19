@@ -15,9 +15,7 @@ export const useCartStore = defineStore("cart", () => {
 
   const cartTotal = computed(() => {
     return cartItems.value.reduce((total, item) => {
-      // Handle both nested product and flat structure
-      const price = parseFloat(item.product?.price || item.price || 0);
-      return total + price * item.quantity;
+      return total + item.price * item.quantity;
     }, 0);
   });
 
@@ -25,7 +23,6 @@ export const useCartStore = defineStore("cart", () => {
 
   /**
    * Get user's cart
-   * API returns: { status, current_page, data: [...] }
    */
   const getCart = async () => {
     loading.value = true;
@@ -33,12 +30,8 @@ export const useCartStore = defineStore("cart", () => {
 
     try {
       const response = await api.get("/cart");
-      const raw = response.data;
-
-      // Unwrap paginated response - API returns data nested in { data: [...] }
-      cartItems.value = Array.isArray(raw) ? raw : raw.data || [];
-
-      return cartItems.value;
+      cartItems.value = response.data;
+      return response.data;
     } catch (err) {
       error.value = err.response?.data?.message || "Failed to fetch cart";
       throw err;
