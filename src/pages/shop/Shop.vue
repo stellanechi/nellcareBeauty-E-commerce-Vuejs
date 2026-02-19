@@ -2,7 +2,9 @@
   <div>
     <NavigationBar />
     <BreadCrumbs :breadcrumbs="breadcrumbs" title="Products" />
-    <Products />
+    <div class="container mx-auto py-8">
+      <Products />
+    </div>
   </div>
 
   <p>checking out bag</p>

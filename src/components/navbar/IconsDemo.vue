@@ -202,8 +202,8 @@
       </router-link>
 
       <!-- Cart -->
-      <button
-        @click="openCartSidebar"
+      <router-link
+        to="/cart"
         class="relative text-gray-600 hover:text-gray-900 transition-colors"
       >
         <svg
@@ -225,11 +225,8 @@
         >
           {{ cartStore.cartCount }}
         </span>
-      </button>
+      </router-link>
     </div>
-
-    <!-- Cart Sidebar Modal -->
-    <CartSidebar :is-open="isCartOpen" @close="closeCartSidebar" />
   </div>
 </template>
 
@@ -239,7 +236,6 @@ import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/authStore";
 import { useCartStore } from "@/stores/cartStore";
 import { useWishlistStore } from "@/stores/wishlistStore";
-import CartSidebar from "@/components/navbar/CartSidebarModal.vue";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -247,7 +243,6 @@ const cartStore = useCartStore();
 const wishlistStore = useWishlistStore();
 
 const isDropdownOpen = ref(false);
-const isCartOpen = ref(false);
 const dropdownRef = ref(null);
 
 const toggleDropdown = () => {
@@ -256,14 +251,6 @@ const toggleDropdown = () => {
 
 const closeDropdown = () => {
   isDropdownOpen.value = false;
-};
-
-const openCartSidebar = () => {
-  isCartOpen.value = true;
-};
-
-const closeCartSidebar = () => {
-  isCartOpen.value = false;
 };
 
 const handleLogout = async () => {

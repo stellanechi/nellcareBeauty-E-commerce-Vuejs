@@ -14,7 +14,7 @@ export const useProductStore = defineStore("product", () => {
   /**
    * Get all products
    * API returns: { status, current_page, data: [...] }
-   * @param {string|null} tab - Optional filter tab (e.g. 'sale', 'new', 'featured')
+   * @param {string|null} tab
    */
   const getProducts = async (tab = null) => {
     loading.value = true;
@@ -25,7 +25,7 @@ export const useProductStore = defineStore("product", () => {
       const response = await api.get("/products", { params });
       // Unwrap paginated response — handles both { data: [] } and plain []
       const raw = response.data;
-      console.log("raw", raw);
+      // console.log("raw", raw);
 
       products.value = Array.isArray(raw) ? raw : (raw.data ?? []);
       return products.value;
