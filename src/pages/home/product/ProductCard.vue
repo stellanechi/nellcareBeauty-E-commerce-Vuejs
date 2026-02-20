@@ -235,7 +235,7 @@ const handleWishlist = async () => {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: box-shadow 0.3s ease;
-  padding: 2rem 2rem;
+  padding: 1rem 2rem;
   background-color: #f2f2f2;
 }
 

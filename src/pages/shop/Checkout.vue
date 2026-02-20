@@ -1,5 +1,25 @@
 <template>
   <div class="min-h-screen bg-white">
+    <NavigationBar />
+
+    <!-- Breadcrumb -->
+    <!-- <div class="container mx-auto py-6">
+      <nav class="text-sm text-gray-500" aria-label="Breadcrumb">
+        <ol class="list-reset flex items-center gap-2">
+          <li>
+            <router-link to="/" class="text-blue-600 hover:text-blue-800"
+              >Home</router-link
+            >
+          </li>
+          <li>
+            <span class="mx-2 text-gray-400">›</span>
+          </li>
+          <li class="text-gray-900">Checkout</li>
+        </ol>
+      </nav>
+    </div> -->
+
+    <!-- Main Content -->
     <div>
       <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
@@ -448,6 +468,7 @@ import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useCartStore } from "@/stores/cartStore";
 import { useAuthStore } from "@/stores/authStore";
+import NavigationBar from "@/components/navbar/NavigationBar.vue";
 
 const router = useRouter();
 const cartStore = useCartStore();
