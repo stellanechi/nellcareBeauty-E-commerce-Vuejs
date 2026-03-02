@@ -325,7 +325,7 @@ const handleWishlist = async () => {
 /* ── Image ── */
 .image-container {
   position: relative;
-  aspect-ratio: 3/4;
+  aspect-ratio: 3/3;
   overflow: hidden;
   display: flex;
   align-items: center;

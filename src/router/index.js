@@ -95,6 +95,11 @@ const router = createRouter({
       name: "sales",
       component: () => import("@/pages/home/Sales.vue"),
     },
+    {
+      path: "/about",
+      name: "about",
+      component: () => import("@/components/footer/footerpages/AboutUs.vue"),
+    },
     // 404 NOT FOUND - MUST BE LAST!
     {
       path: "/:pathMatch(.*)*",
