@@ -606,5 +606,4 @@
 
 <script setup>
 import NavigationBar from "@/components/navbar/NavigationBar.vue";
-import Footer from "@/components/footer/Footer.vue";
 </script>

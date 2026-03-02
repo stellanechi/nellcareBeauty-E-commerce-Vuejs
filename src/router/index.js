@@ -100,6 +100,11 @@ const router = createRouter({
       name: "about",
       component: () => import("@/components/footer/footerpages/AboutUs.vue"),
     },
+    {
+      path: "/contact",
+      name: "contact",
+      component: () => import("@/components/footer/ContactPage.vue"),
+    },
     // 404 NOT FOUND - MUST BE LAST!
     {
       path: "/:pathMatch(.*)*",
