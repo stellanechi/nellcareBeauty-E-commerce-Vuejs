@@ -2,22 +2,23 @@
   <div class="min-h-screen bg-white flex items-center justify-center px-6">
     <div class="max-w-2xl w-full text-center">
       <!-- 404 Large Number -->
-      <div class="mb-8">
+      <!-- <div class="mb-8">
         <h1
           class="text-[6rem] md:text-[6rem] font-light text-gray-200 leading-none select-none"
         >
           404
         </h1>
-      </div>
+      </div> -->
 
       <!-- Error Message -->
       <div class="mb-8">
         <h2 class="text-3xl md:text-4xl font-light text-gray-900 mb-4">
-          The page you're looking is under development.
+          This page is under development.
         </h2>
-        <!-- <p class="text-gray-500 text-lg max-w-md mx-auto">
-          The page you're looking is under development.
-        </p> -->
+        <p class="text-gray-500 text-sm">
+          Don't worry, we're working hard to get it ready. In the meantime, you
+          can explore other sections of our site.
+        </p>
       </div>
 
       <!-- Illustration -->
