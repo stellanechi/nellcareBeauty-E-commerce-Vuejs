@@ -1,15 +1,6 @@
 <template>
   <div class="min-h-screen bg-white flex items-center justify-center px-6">
     <div class="max-w-2xl w-full text-center">
-      <!-- 404 Large Number -->
-      <!-- <div class="mb-8">
-        <h1
-          class="text-[6rem] md:text-[6rem] font-light text-gray-200 leading-none select-none"
-        >
-          404
-        </h1>
-      </div> -->
-
       <!-- Error Message -->
       <div class="mb-8">
         <h2 class="text-3xl md:text-4xl font-light text-gray-900 mb-4">
